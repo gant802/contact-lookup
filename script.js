@@ -32,7 +32,7 @@ function searchForContact(input, array) {
             }
         }
     }
-    return matchingContacts.length > 0 ? matchingContacts : false; // Return array of matching contacts
+    return matchingContacts.length > 0 ? matchingContacts : false; // Return array of matching contacts or returns false if no matches
 };
 
 searchButton.addEventListener("click", function() {
@@ -90,3 +90,4 @@ submitButton.addEventListener("click", (event) => {
 console.log(contacts);
 
 
+//next time, get the found contact to pop up and all contacts to show at the bottom
