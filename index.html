@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Look-up</title>
+    <link rel="stylesheet" src="./style.css" />
+    <script defer src="./script.js"></script>
+</head>
+
+<body>
+    <div class="lookup-container">
+        <h1>Contact Look Up</h1>
+        <input id="search-input" type="text" placeholder="Search..." />
+        <button id="search-button">Search</button>
+    </div>
+    <div class="new-contact-container">
+        <h1>New Contact</h1>
+        <form>
+            <label for="first-name">First name:</label>
+            <input type="text" id="first-name" name="first-name" autocomplete="on" required>
+            <label for="last-name">Last name:</label>
+            <input type="text" id="last-name" name="last-name" autocomplete="on" required>
+            <label for="mobile-number">Mobile number:</label>
+            <input type="number" id="mobile-number" name="mobile-number" autocomplete="on" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="on">
+            <p id="address">Address:</p>
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street" autocomplete="on">
+            <label for="appartment-number">Appartment number:</label>
+            <input type="text" id="appartment-number" name="appartment-number" autocomplete="on">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" autocomplete="on">
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" autocomplete="on">
+            <label for="zip-code">Zip Code:</label>
+            <input type="number" id="zip-code" name="zip-code" autocomplete="on">
+            <input type="submit" id="submit-button">
+        </form>
+    </div>
+</body>
+
+</html>
