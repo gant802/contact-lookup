@@ -11,10 +11,16 @@ const stateText = document.getElementById('state');
 const zipCodeText = document.getElementById('zip-code');
 const submitButton = document.getElementById('submit-button');
 
+const foundContactText = document.getElementById('found-contact');
+
 const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
 
 function searchForContact(input, array) {
     const matchingContacts = [];
+    if (searchInput.value === "") {
+        foundContactText.innerHTML = "";
+        return
+    };
     for (let contact of array) {
         for (let key in contact) {
             if (typeof contact[key] === 'object') {
@@ -39,11 +45,26 @@ searchButton.addEventListener("click", function() {
     const userInput = searchInput.value.toLowerCase();
     let result = searchForContact(userInput, contacts); // Start searching from the first contact
     if (result) {
-        console.log(result);
+        displayFoundContact(result);
     } else {
-        return console.log("Cannot find contact")
+        return alert("Cannot find contact")
     }
 });
+
+const displayFoundContact = (contactFound) => {
+    foundContactText.innerHTML = "";
+
+    contactFound.forEach(contact => {
+        foundContactText.innerHTML += `
+        <div id="found-contact-innerHTML" style="border: 1px solid black; border-radius: 10px; width: 400px; padding: 5px;">
+        <p><strong>Name:</strong> ${contact.firstName} ${contact.lastName}</p>
+        <p><strong>Number:</strong> ${contact.mobileNumber}</p>
+        <p><strong>Email:</strong> ${contact.email}</p>
+        <p><strong>Address:</strong> ${contact.address.street} ${contact.address.appartmentNumber}, ${contact.address.city}, ${contact.address.state} ${contact.address.zipCode}</p>
+        </div>
+        `  
+    }) 
+}
 
 function addContact() {
     let contactObj = {

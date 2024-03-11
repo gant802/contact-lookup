@@ -11,9 +11,17 @@
 
 <body>
     <div class="lookup-container">
-        <h1>Contact Look Up</h1>
-        <input id="search-input" type="text" placeholder="Search..." />
-        <button id="search-button">Search</button>
+        <div class="lookup-container-child">
+            <h1>Contact Look Up</h1>
+            <input id="search-input" type="text" placeholder="Search..." />
+            <button id="search-button">Search</button>
+        </div>
+        <div class="lookup-container-child hidden">
+            <h2 id="contact-name"></h2>
+            <p id="contact-phone-number"></p>
+            <p id="contact-email"></p>
+            <p id="contact-address"></p>
+        </div>
     </div>
     <div class="new-contact-container">
         <h1>New Contact</h1>
