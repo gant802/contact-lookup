@@ -1,10 +1,44 @@
 body {
-    width: 50%;
-    margin: 0 auto;
+    width: 320px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 1px solid;
 }
 
 .lookup-container { 
     text-align: center;
+    padding-bottom: 10px;
 }
 
+#found-contact-innerHTML {
+    border-bottom: 1px solid black; 
+    border-radius: 10px; 
+    width: 270px; 
+    padding: 5px;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+form {
+    margin:  0 auto;
+    width: 320px;
+    display: none;
+}
+
+label {
+    padding:  5px;
+    width: 150px;
+    display: inline-block;
+}
+
+input {
+    
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Look-up</title>
-    <link rel="stylesheet" src="./style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <script defer src="./script.js"></script>
 </head>
 
@@ -16,16 +16,15 @@
             <input id="search-input" type="text" placeholder="Search..." />
             <button id="search-button">Search</button>
         </div>
-        <div class="lookup-container-child hidden">
-            <h2 id="contact-name"></h2>
-            <p id="contact-phone-number"></p>
-            <p id="contact-email"></p>
-            <p id="contact-address"></p>
+        <div id="found-contact" class="lookup-container-child hidden">
+            <!--found contact list-->
         </div>
     </div>
+    <div id="button-container">
+    <button type="button" id="add-new-contact">Add New Contact</button>
+    </div>
     <div class="new-contact-container">
-        <h1>New Contact</h1>
-        <form>
+        <form id="new-contact-form">
             <label for="first-name">First name:</label>
             <input type="text" id="first-name" name="first-name" autocomplete="on" required>
             <label for="last-name">Last name:</label>
@@ -46,6 +45,7 @@
             <label for="zip-code">Zip Code:</label>
             <input type="number" id="zip-code" name="zip-code" autocomplete="on">
             <input type="submit" id="submit-button">
+            <button type="button" id="cancel-button">Cancel</button>
         </form>
     </div>
 </body>

@@ -12,6 +12,9 @@ const zipCodeText = document.getElementById('zip-code');
 const submitButton = document.getElementById('submit-button');
 
 const foundContactText = document.getElementById('found-contact');
+const addNewContactButton = document.getElementById('add-new-contact');
+const cancelButton = document.getElementById('cancel-button');
+const form = document.getElementById('new-contact-form');
 
 const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
 
@@ -19,7 +22,7 @@ function searchForContact(input, array) {
     const matchingContacts = [];
     if (searchInput.value === "") {
         foundContactText.innerHTML = "";
-        return
+        return;
     };
     for (let contact of array) {
         for (let key in contact) {
@@ -56,7 +59,7 @@ const displayFoundContact = (contactFound) => {
 
     contactFound.forEach(contact => {
         foundContactText.innerHTML += `
-        <div id="found-contact-innerHTML" style="border: 1px solid black; border-radius: 10px; width: 400px; padding: 5px;">
+        <div id="found-contact-innerHTML">
         <p><strong>Name:</strong> ${contact.firstName} ${contact.lastName}</p>
         <p><strong>Number:</strong> ${contact.mobileNumber}</p>
         <p><strong>Email:</strong> ${contact.email}</p>
@@ -106,7 +109,16 @@ submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     addContact();
     clearContent();
+    form.style.display = "none";
 });
+
+addNewContactButton.addEventListener("click", function() {
+    form.style.display = "block";
+})
+
+cancelButton.addEventListener("click", function() {
+    form.style.display = "none";
+})
 
 console.log(contacts);
 
