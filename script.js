@@ -10,11 +10,13 @@ const cityText = document.getElementById('city');
 const stateText = document.getElementById('state');
 const zipCodeText = document.getElementById('zip-code');
 const submitButton = document.getElementById('submit-button');
-
 const foundContactText = document.getElementById('found-contact');
 const addNewContactButton = document.getElementById('add-new-contact');
 const cancelButton = document.getElementById('cancel-button');
 const form = document.getElementById('new-contact-form');
+const allContactsContainerText = document.getElementById('all-contacts-container');
+const viewContactsButton = document.getElementById('view-contacts');
+const closeContactsButton = document.getElementById('close-contacts-button');
 
 const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
 
@@ -43,16 +45,6 @@ function searchForContact(input, array) {
     }
     return matchingContacts.length > 0 ? matchingContacts : false; // Return array of matching contacts or returns false if no matches
 };
-
-searchButton.addEventListener("click", function() {
-    const userInput = searchInput.value.toLowerCase();
-    let result = searchForContact(userInput, contacts); // Start searching from the first contact
-    if (result) {
-        displayFoundContact(result);
-    } else {
-        return alert("Cannot find contact")
-    }
-});
 
 const displayFoundContact = (contactFound) => {
     foundContactText.innerHTML = "";
@@ -88,7 +80,7 @@ function addContact() {
         localStorage.setItem('contacts', JSON.stringify(contacts));
         console.log(contacts);
     } else {
-        console.log("Needs at least a first name, last name and mobile number!")
+       return alert("Needs at least a first name, last name and mobile number!")
     }
 };
 
@@ -104,6 +96,42 @@ function clearContent() {
     zipCodeText.value = "";
 }
 
+const displayAllContacts = () => {
+    allContactsContainerText.innerHTML = '';
+    
+    contacts.forEach(contact => {
+        allContactsContainerText.innerHTML += `
+        <div class="all-contacts-innerHTML">
+        <span><strong>${contact.firstName} ${contact.lastName}</strong></span>
+        <div>
+        <button type="button" id="edit-contact">Edit</button>
+        <button type="button" id="delete-contact">Delete</button>
+        </div>
+        </div>`
+    })
+};
+
+viewContactsButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    closeContactsButton.style.display = "block";
+    allContactsContainerText.style.display = "block";
+    displayAllContacts();
+})
+
+closeContactsButton.addEventListener("click", function() {
+    closeContactsButton.style.display = "none";
+    allContactsContainerText.style.display = "none";
+})
+
+searchButton.addEventListener("click", function() {
+    const userInput = searchInput.value.toLowerCase();
+    let result = searchForContact(userInput, contacts); // Start searching from the first contact
+    if (result) {
+        displayFoundContact(result);
+    } else {
+        return alert("Cannot find contact")
+    }
+});
 
 submitButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -113,6 +141,7 @@ submitButton.addEventListener("click", (event) => {
 });
 
 addNewContactButton.addEventListener("click", function() {
+    allContactsContainerText.innerHTML = '';
     form.style.display = "block";
 })
 
@@ -123,4 +152,4 @@ cancelButton.addEventListener("click", function() {
 console.log(contacts);
 
 
-//next time, get the found contact to pop up and all contacts to show at the bottom
+//next time, get all contacts to show at the bottom
