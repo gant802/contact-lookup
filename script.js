@@ -52,13 +52,32 @@ const displayFoundContact = (contactFound) => {
     contactFound.forEach(contact => {
         foundContactText.innerHTML += `
         <div id="found-contact-innerHTML">
+        <p>${contact.firstName}</p>
         <p><strong>Name:</strong> ${contact.firstName} ${contact.lastName}</p>
         <p><strong>Number:</strong> ${contact.mobileNumber}</p>
         <p><strong>Email:</strong> ${contact.email}</p>
         <p><strong>Address:</strong> ${contact.address.street} ${contact.address.appartmentNumber}, ${contact.address.city}, ${contact.address.state} ${contact.address.zipCode}</p>
+        <div>
+        <button type="button" id="edit-contact">Edit</button>
+        <button type="button" id="delete-contact">Delete</button>
+        <button type="button" id="close-found-contact">Close</button>
+        </div>
         </div>
         `  
     }) 
+}
+
+function makeContactEditable(displayedContact) {
+    firstNameText.value = displayedContact[0].firstName;
+    console.log(displayedContact[0].firstName);
+    lastNameText.value = displayedContact[0].lastName;
+    mobileNumberText.value = displayedContact[0].mobileNumber;
+    emailText.value = displayedContact[0].email;
+    streetText.value = displayedContact[0].address.street;
+    appartmentNumberText.value = displayedContact[0].address.appartmentNumber;
+    cityText.value = displayedContact[0].address.city;
+    stateText.value = displayedContact[0].address.state;
+    zipCodeText.value = displayedContact[0].address.zipCode;
 }
 
 function addContact() {
@@ -80,7 +99,7 @@ function addContact() {
         localStorage.setItem('contacts', JSON.stringify(contacts));
         console.log(contacts);
     } else {
-       return alert("Needs at least a first name, last name and mobile number!")
+       alert("Needs at least a first name, last name and mobile number!")
     }
 };
 
@@ -103,10 +122,6 @@ const displayAllContacts = () => {
         allContactsContainerText.innerHTML += `
         <div class="all-contacts-innerHTML">
         <span><strong>${contact.firstName} ${contact.lastName}</strong></span>
-        <div>
-        <button type="button" id="edit-contact">Edit</button>
-        <button type="button" id="delete-contact">Delete</button>
-        </div>
         </div>`
     })
 };
@@ -149,7 +164,19 @@ cancelButton.addEventListener("click", function() {
     form.style.display = "none";
 })
 
+foundContactText.addEventListener("click", function(event) {
+    const targetContact = event.target.closest("#found-contact-innerHTML");
+    const searchableName = targetContact.querySelector("p:nth-child(1)").textContent.toLowerCase();
+    const contactNeeded = searchForContact(searchableName, contacts);
+    console.log(contactNeeded);
+    
+    if (event.target.id === "edit-contact") {
+        form.style.display = "block";
+        makeContactEditable(contactNeeded);
+    } else if (event.target.id === "delete-contact") {
+        deleteContact(targetContact);
+    }
+});
+
 console.log(contacts);
 
-
-//next time, get all contacts to show at the bottom

@@ -14,7 +14,7 @@ body {
     padding-bottom: 10px;
 }
 
-#found-contact-innerHTML {
+.found-contact-innerHTML {
     border-bottom: 1px solid black; 
     border-radius: 10px; 
     width: 270px; 
@@ -47,7 +47,7 @@ label {
 
 #all-contacts-container {
     display: none;
-    max-height: 100px;
+    max-height: 200px;
     width: 300px;
     margin: 5px auto;
     overflow-y: scroll;
@@ -61,4 +61,16 @@ label {
 #close-contacts-button-container {
     display: flex;
     justify-content: center;
+}
+
+#close-contacts-button {
+    display: none;
+}
+
+#new-contact-submit-cancel-button {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    width: 125px;
+    margin: 0 auto;
 }
